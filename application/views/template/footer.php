@@ -92,13 +92,17 @@
 
 <script type="text/javascript" src="<?php echo base_url('/js/script.js'); ?>"></script>
 
+<script src="<?php echo base_url('/assets/admin/layout/scripts/layout.js'); ?>" type="text/javascript"></script>
+<script src="<?php echo base_url('/assets/global/plugins/jquery-slimscroll/jquery.slimscroll.min.js'); ?>" type="text/javascript"></script>
+
+
 
 <!-- END PAGE LEVEL SCRIPTS -->
 <script>
     jQuery(document).ready(function() {
-        //Metronic.init(); // init metronic core componets
+        Metronic.init(); // init metronic core componets
         Layout.init(); // init layout
-        FormValidation.init();
+        Demo.init(); // init demo features
         //TableAjax.init();
         //TableAdvanced.init();
         ComponentsPickers.init();
@@ -106,16 +110,16 @@
         Index.init();
         Index.initDashboardDaterange();
         //Index.initJQVMAP(); // init index page's custom scripts
-        Index.initCalendar(); // init index page's custom scripts
+        //Index.initCalendar(); // init index page's custom scripts
         //Index.initCharts(); // init index page's custom scripts
         //Index.initChat();
         //TableAdvanced.init();
 
         //Index.initMiniCharts();
         //Index.initIntro();
-        Tasks.initDashboardWidget();
-        ComponentsDropdowns.init();
-        
+        //Tasks.initDashboardWidget();
+        //ComponentsDropdowns.init();
+        FormValidation.init();
 
     });
 </script>
