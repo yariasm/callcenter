@@ -73,6 +73,26 @@
                         <?php endif; ?>
                     </ul>
                 </li>
+            <?php endif; ?> 
+                
+            <?php if (know_permission_role('GES', 'permission_view')): ?>
+                <li class="<?php echo strstr($content, 'gestion') ? 'active open' : ''; ?>">
+                    <a href="javascript:;">
+                        <i class="icon-call-out"></i>
+                        <span class="title">CallCenter</span>
+                        <?php echo strstr($content, 'gestion') ? '<span class="selected"></span>' : ''; ?>
+                        <span class="arrow <?php echo strstr($content, 'gestion') ? 'open' : ''; ?>"></span>
+                    </a>                   
+                    <ul class="sub-menu">
+                        <?php if (know_permission_role('GES', 'permission_add')): ?>
+                            <li>
+                                <a href="<?php echo base_url('index.php/gestion/add'); ?>">
+                                    Agregar Gestion
+                                </a>
+                            </li>
+                        <?php endif; ?>
+                    </ul>
+                </li>
             <?php endif; ?>                  
 
             <?php if (know_permission_role('USU', 'permission_view')): ?>
