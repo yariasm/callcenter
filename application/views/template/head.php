@@ -25,8 +25,8 @@ License: You must have a valid license purchased only from themeforest(the above
         <meta content="" name="author"/>
         <!-- BEGIN GLOBAL MANDATORY STYLES -->
         <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all" rel="stylesheet" type="text/css"/>
-        
-        
+
+
         <link rel="shortcut icon" href="<?php echo base_url('images/favicon.png'); ?>">
 
         <link href="<?php echo base_url('/assets/global/plugins/font-awesome/css/font-awesome.min.css'); ?>" rel="stylesheet" type="text/css"/>
@@ -72,13 +72,6 @@ License: You must have a valid license purchased only from themeforest(the above
             var base_url_js = '<?php echo base_url(); ?>';
         </script>
 
-        <?php if ($this->session->userdata('ID_TIPO_USU') != 3) { ?>
-            <style>
-                /*
-                a:visited{
-                    color:red !important;
-                }*/
-            </style>
-        <?php } ?>
+        <script src="<?php echo base_url('/assets/global/plugins/jquery-1.11.0.min.js'); ?>" type="text/javascript"></script>
     </head>
     <!-- END HEAD -->

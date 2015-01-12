@@ -26,6 +26,14 @@ function get_dropdown($array_objects, $value, $name) {
     return $array_return;
 }
 
+function get_dropdown_clear($array_objects, $value, $name) {
+    $array_return = array('' => '--Seleccione una Opcion--');
+    foreach ($array_objects as $array) {
+        $array_return[$array->$value] = $array->$name;
+    }
+    return $array_return;
+}
+
 function get_dropdown_select($array_objects, $value, $name, $select_value, $select_name = 'Seleccionar...') {
     $array_return = array($select_value => $select_name);
     foreach ($array_objects as $array) {

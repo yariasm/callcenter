@@ -99,6 +99,34 @@ function get_gestion() {
     });
 }
 
+function get_gestion_new() {
+    var search_type = $("#search_type").val();
+    var search_value = $("#search_value").val();
+    var space = 'add_gestion';
+    $("#" + space).html('');
+    Metronic.blockUI({
+        target: '#search',
+        message: 'Buscando...',
+    });
+    $.ajax({
+        data: "search_type=" + search_type + "&search_value=" + search_value,
+        type: "POST",
+        dataType: "html",
+        url: base_url_js + "index.php/gestion/new_gestion",
+        success: function (data) {
+            $("#" + space).html(data);
+            Metronic.unblockUI('#search');
+            Metronic.init();
+        },
+        error: function (xhr, ajaxOptions, thrownError) {
+            Metronic.unblockUI('#search');
+            alert("Error al Cargar...")
+        },
+        async: true
+    });
+}
+
+
 /**************************************/
 /*      FIN FUNCIONES GESTION DE CALL CENTER
  /**************************************/

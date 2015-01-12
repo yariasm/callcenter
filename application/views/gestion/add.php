@@ -43,10 +43,10 @@
                         <div class="caption">
                             <i class="fa fa-search"></i>Buscar Usuario
                         </div>
-<!--                        <div class="tools">
-                            <a href="javascript:;" class="collapse">
-                            </a>
-                        </div>-->
+                        <!--                        <div class="tools">
+                                                    <a href="javascript:;" class="collapse">
+                                                    </a>
+                                                </div>-->
                     </div>
                     <div class="portlet-body form">
                         <!-- BEGIN FORM-->
@@ -68,15 +68,18 @@
                                             Numero
                                         </label>
                                         <div class="col-md-9">
-                                            <input name="search_value" value="" id="search_value" class="form-control form-control-inline input-medium" size="16" type="text"/>
+                                            <input name="search_value" value="<?php echo (isset($user[0]->num_documento)) ? $user[0]->num_documento : ''; ?>" id="search_value" class="form-control form-control-inline input-medium" size="16" type="text"/>
                                         </div>
                                     </div>
-                                </div>                              
+                                </div>
                             </div>
                             <div class="form-actions">
                                 <div class="row">
                                     <div class="col-md-offset-3 col-md-9">
-                                        <button type="button" onclick="get_user();get_account();get_gestion()" class="btn blue">
+                                        <button type="button" onclick="get_user();
+                                                get_account();
+                                                get_gestion();
+                                                get_gestion_new()" class="btn blue">
                                             Buscar&nbsp;
                                             <i class="fa fa-search"></i>
                                         </button>
@@ -84,6 +87,12 @@
                                 </div>
                             </div>
                         </form>
+                        <?php
+                        //LANZAR FUNCIONES JAVASCRIPT SI SE ENCONTRO USUARIO
+                        echo (isset($user[0]->num_documento)) ?
+                                '<script>$(document).ready(function() { get_user();get_account();get_gestion();get_gestion_new(); });</script>' :
+                                '';
+                        ?>
                         <!-- END FORM-->
                     </div>
                 </div>
@@ -92,6 +101,7 @@
             <div class="col-md-6 col-sm-6" id="info_account"></div>
             <div class="col-md-6 col-sm-6" id="info_gestion"></div>
             <div class="col-md-12 col-sm-12" id="add_gestion"></div>
+           
         </div>
     </div>
 </div>
