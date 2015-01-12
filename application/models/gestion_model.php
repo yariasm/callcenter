@@ -5,11 +5,13 @@ if (!defined('BASEPATH'))
 
 class Gestion_model extends CI_Model {
 
-    public function get_() {
+    public function get_user($search_type,$search_value) {
+        
         $this->db->set_dbprefix('');
         $this->db->select('*');
-        $this->db->from('persona');
-        $this->db->where('num_documento', $num_documento);
+        $this->db->from('persona,cuenta');
+        ($search_type==1)?$this->db->where('num_documento', $search_value):$this->db->where('cuenta', $search_value);
+        $this->db->where("persona.persona_id","cuenta.persona_id",false);
         $query = $this->db->get();
         return $query->result();
     }

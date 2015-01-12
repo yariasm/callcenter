@@ -15,6 +15,97 @@ function get_city(id1, id2) {
 }
 
 /**************************************/
+/*      INICIO FUNCIONES GESTION DE CALL CENTER
+ /**************************************/
+
+function get_user() {
+    var search_type = $("#search_type").val();
+    var search_value = $("#search_value").val();
+    var space = 'info_user';
+    $("#" + space).html('');
+    Metronic.blockUI({
+        target: '#search',
+        message: 'Buscando...',
+    });
+    $.ajax({
+        data: "search_type=" + search_type + "&search_value=" + search_value,
+        type: "POST",
+        dataType: "html",
+        url: base_url_js + "index.php/gestion/search_user",
+        success: function (data) {
+            $("#" + space).html(data);
+            Metronic.unblockUI('#search');
+            Metronic.init();
+        },
+        error: function (xhr, ajaxOptions, thrownError) {
+            Metronic.unblockUI('#search');
+            alert("Error al Cargar...")
+        },
+        async: true
+    });
+}
+
+function get_account() {
+    var search_type = $("#search_type").val();
+    var search_value = $("#search_value").val();
+    var space = 'info_account';
+    $("#" + space).html('');
+    Metronic.blockUI({
+        target: '#search',
+        message: 'Buscando...',
+    });
+    $.ajax({
+        data: "search_type=" + search_type + "&search_value=" + search_value,
+        type: "POST",
+        dataType: "html",
+        url: base_url_js + "index.php/gestion/search_account",
+        success: function (data) {
+            $("#" + space).html(data);
+            Metronic.unblockUI('#search');
+            Metronic.init();
+        },
+        error: function (xhr, ajaxOptions, thrownError) {
+            Metronic.unblockUI('#search');
+            alert("Error al Cargar...")
+        },
+        async: true
+    });
+}
+
+function get_gestion() {
+    var search_type = $("#search_type").val();
+    var search_value = $("#search_value").val();
+    var space = 'info_gestion';
+    $("#" + space).html('');
+    Metronic.blockUI({
+        target: '#search',
+        message: 'Buscando...',
+    });
+    $.ajax({
+        data: "search_type=" + search_type + "&search_value=" + search_value,
+        type: "POST",
+        dataType: "html",
+        url: base_url_js + "index.php/gestion/search_gestion",
+        success: function (data) {
+            $("#" + space).html(data);
+            Metronic.unblockUI('#search');
+            Metronic.init();
+        },
+        error: function (xhr, ajaxOptions, thrownError) {
+            Metronic.unblockUI('#search');
+            alert("Error al Cargar...")
+        },
+        async: true
+    });
+}
+
+/**************************************/
+/*      FIN FUNCIONES GESTION DE CALL CENTER
+ /**************************************/
+
+
+
+/**************************************/
 var element = '';
 /**************************************/
 function get_cause() {
