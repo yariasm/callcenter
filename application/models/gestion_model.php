@@ -47,7 +47,7 @@ class Gestion_model extends CI_Model {
         $this->db->where("visita.USUARIO_ID", "proyecto_usuarios_sistema.USUARIO_ID", false);
         $query = $this->db->get();
         return $query->result();          
-    }    
+    }       
 
     public function insert($post) {
         $data = array(

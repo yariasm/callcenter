@@ -45,6 +45,18 @@ class Cause_model extends CI_Model {
                        //echo $SQL_string;
         return $SQL_string_query = $this->db->query($SQL_string);
     }
+    
+    
+    
+    public function get_select_cause($resultado_id) {
+        $this->db->set_dbprefix('');
+        $this->db->select('*');
+        $this->db->from('causal,resultado_causal');
+        $this->db->where('resultado_causal.resultado_id', $resultado_id);
+        $this->db->where("causal.causal_id", "resultado_causal.causal_id", false);
+        $query = $this->db->get();
+        return $query->result();
+    }       
    
 
 }

@@ -3,13 +3,24 @@
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
-class Portafolio_model extends CI_Model {
+class Report_model extends CI_Model {
+    
+    
 
-    public function get_persona_id($num_documento) {
+    public function get_report1($num_documento) {
         $this->db->set_dbprefix('');
         $this->db->select('*');
-        $this->db->from('persona');
-        $this->db->where('num_documento', $num_documento);
+        $this->db->from('gestion,accion,causal,resultado,cuenta,persona');
+        
+        $this->db->where("gestion.accion_id", "accion.accion_id", false);
+        $this->db->where("gestion.causal_id", "causal.causal_id", false);
+        $this->db->where("gestion.resultado_id", "resultado.resultado_id", false);
+        
+        $this->db->where("gestion.cuenta_id", "cuenta.cuenta_id", false);
+        
+        $this->db->where("cuenta.persona_id", "persona.persona_id", false);
+        
+        //$this->db->where('gestion', $num_documento);
         $query = $this->db->get();
         return $query->result();
     }

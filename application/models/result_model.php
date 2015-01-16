@@ -92,6 +92,16 @@ class Result_model extends CI_Model {
         $SQL_string_query = $this->db->query($SQL_string);
         return $SQL_string_query->result();  
     }
+    
+    public function get_select_result($accion_id) {
+        $this->db->set_dbprefix('');
+        $this->db->select('*');
+        $this->db->from('resultado,accion_resultado');
+        $this->db->where('accion_resultado.accion_id', $accion_id);
+        $this->db->where("resultado.resultado_id", "accion_resultado.resultado_id", false);
+        $query = $this->db->get();
+        return $query->result();
+    }     
    
 
 }

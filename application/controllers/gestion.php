@@ -165,9 +165,9 @@ class Gestion extends CI_Controller {
             if ($post['search_type'] != '' && $post['search_value'] != '') {
                 $data['user'] = $this->gestion_model->get_user($post['search_type'], $post['search_value']);
                 if (count($data['user']) > 0) {
-                    $data['action'] = get_dropdown($this->action_model->get_all(), 'accion_id', 'nombre');
-                    $data['result'] = get_dropdown($this->result_model->get_all(), 'resultado_id', 'nombre');
-                    $data['cause'] = get_dropdown($this->cause_model->get_all(), 'causal_id', 'nombre');
+                    $data['action'] = get_dropdown_select($this->action_model->get_all(), 'accion_id', 'nombre','');
+                    //$data['result'] = get_dropdown($this->result_model->get_all(), 'resultado_id', 'nombre');
+                    //$data['cause'] = get_dropdown($this->cause_model->get_all(), 'causal_id', 'nombre');
                     echo $this->load->view('gestion/new_gestion', $data, true);
                 } else {
                     echo '';

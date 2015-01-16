@@ -148,8 +148,8 @@ class User extends CI_Controller {
             }
         } else {
             //SI EL USUARIO INGRESO UNA CONTRASEÑA SE ACTUALIZA EN EL SISTEMA
-            if ($this->input->post('USUARIO_CLAVE', TRUE) != '') {
-                $user_password = make_hash($this->input->post('USUARIO_CLAVE', TRUE));
+            if ($this->input->post('USUARIO_PASSWORD', TRUE) != '') {
+                $user_password = make_hash($this->input->post('USUARIO_PASSWORD', TRUE));
                 $this->user_model->update_user_password($user_password, $id_user);
             }
             $data = array(

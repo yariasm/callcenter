@@ -36,7 +36,7 @@
                                             <span class="required" aria-required="true">*</span>
                                         </label>
                                         <div class="col-md-9">
-                                            <?php echo form_dropdown('accion_id', $action, '', 'id="accion_id" class="form-control"'); ?>
+                                            <?php echo form_dropdown('accion_id', $action, '', 'onchange="get_select_result(this.value)" id="accion_id" class="form-control"'); ?>
                                         </div>
                                     </div>
                                 </div>
@@ -46,8 +46,8 @@
                                         <label class="control-label col-md-3">
                                             Resultado
                                         </label>
-                                        <div class="col-md-9">
-                                            <?php echo form_dropdown('resultado_id', $result, '', 'id="resultado_id" class="form-control"'); ?>
+                                        <div class="col-md-9" id="select_result">
+                                            <?php echo form_dropdown('resultado_id', array('' => '--Seleccione una Accion--'), '', 'onchange="get_select_cause(this.value)" id="resultado_id" class="form-control"'); ?>
                                         </div>
                                     </div>
                                 </div>
@@ -57,8 +57,8 @@
                                         <label class="control-label col-md-3">
                                             Causal
                                         </label>
-                                        <div class="col-md-9">
-                                            <?php echo form_dropdown('causal_id', $cause, '', 'id="causal_id" class="form-control"'); ?>
+                                        <div class="col-md-9" id="select_cause">
+                                            <?php echo form_dropdown('causal_id', array('' => '--Seleccione un Resultado--'), '', 'id="causal_id" class="form-control"'); ?>
                                         </div>
                                     </div>
                                 </div>
@@ -142,3 +142,39 @@
         </div>
     </div>
 </div>
+
+<script>
+    function get_select_result(accion_id) {
+        $.ajax({
+            data: "accion_id=" + accion_id,
+            type: "POST",
+            dataType: "html",
+            url: base_url_js + "index.php/result/get_select_result",
+            success: function (data) {
+                $("#select_result").html(data);
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                alert("Error al Cargar los municipios")
+            },
+            async: true
+        });
+    }
+    
+    function get_select_cause(resultado_id) {
+        $.ajax({
+            data: "resultado_id=" + resultado_id,
+            type: "POST",
+            dataType: "html",
+            url: base_url_js + "index.php/cause/get_select_cause",
+            success: function (data) {
+                $("#select_cause").html(data);
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                alert("Error al Cargar los municipios")
+            },
+            async: true
+        });
+    }    
+    
+    
+</script>

@@ -68,7 +68,10 @@
                                             Numero
                                         </label>
                                         <div class="col-md-9">
-                                            <input name="search_value" value="<?php echo (isset($user[0]->num_documento)) ? $user[0]->num_documento : ''; ?>" id="search_value" class="form-control form-control-inline input-medium" size="16" type="text"/>
+                                            <input onkeyup="get_user();
+                                                get_account();
+                                                get_gestion();
+                                                get_gestion_new()" name="search_value" value="<?php echo (isset($user[0]->num_documento)) ? $user[0]->num_documento : ''; ?>" id="search_value" class="form-control form-control-inline input-medium" size="16" type="text"/>
                                         </div>
                                     </div>
                                 </div>
@@ -98,9 +101,10 @@
                 </div>
             </div>
             <div class="col-md-6 col-sm-6" id="info_user"></div>
+            <div class="col-md-12 col-sm-12" id="add_gestion"></div>
             <div class="col-md-6 col-sm-6" id="info_account"></div>
             <div class="col-md-6 col-sm-6" id="info_gestion"></div>
-            <div class="col-md-12 col-sm-12" id="add_gestion"></div>
+            
            
         </div>
     </div>

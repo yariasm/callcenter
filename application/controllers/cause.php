@@ -141,6 +141,21 @@ class Cause extends CI_Controller {
             }
         }
     }
+    
+    
+    /*     * ***************************AJAX FUNCTIONS************************** */    
+    
+    public function get_select_cause() {
+        validate_login($this->session->userdata('logged_in'));
+
+        if ($this->input->is_ajax_request()) {
+            $resultado_id = $this->input->post('resultado_id');
+            $cause = get_dropdown_select($this->cause_model->get_select_cause($resultado_id), 'causal_id', 'nombre', '');
+            echo form_dropdown('causal_id', $cause, '', 'id="causal_id" class="form-control"');
+        } else {
+            echo 'Acceso no utorizado';
+        }
+    }    
 
 
 }

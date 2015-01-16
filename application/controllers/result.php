@@ -183,4 +183,16 @@ class Result extends CI_Controller {
         }
     }
 
+    public function get_select_result() {
+        validate_login($this->session->userdata('logged_in'));
+
+        if ($this->input->is_ajax_request()) {
+            $accion_id = $this->input->post('accion_id');
+            $result = get_dropdown_select($this->result_model->get_select_result($accion_id), 'resultado_id', 'nombre', '');
+            echo form_dropdown('resultado_id', $result, '', 'onchange="get_select_cause(this.value)" id="resultado_id" class="form-control"');
+        } else {
+            echo 'Acceso no utorizado';
+        }
+    }
+
 }

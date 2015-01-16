@@ -75,7 +75,7 @@ class Portafolio extends CI_Controller {
                 //echo '<pre>' . $total_registros . print_r($data_file, true) . '</pre>';
                 //VALIDAR SI EL ARCHIVO CONTIENE LAS COLUMNAS NECESARIAS (87 - CI), ADEMAS SE VALIDA LA PRIMERA Y ULTIMA FILA.
                 $var_filas = 87;
-                if (count($data_file[1]) != $var_filas || $data_file[1]['A'] != 'CUENTA' || $data_file[1]['CI'] != 'tienda') {
+                if ( $data_file[1]['A'] != 'CUENTA' || $data_file[1]['CI'] != 'tienda') {
                     $this->session->set_flashdata(array('message' => "Error al leer el archivo, no contiene las $var_filas filas necesarias", 'message_type' => 'danger'));
                     redirect('index.php/portafolio/add', 'refresh');
                 }
@@ -100,7 +100,7 @@ class Portafolio extends CI_Controller {
                         $output.='<span class="label label-success">OK</span> Se Agrego Historico Persona: Doc.: ' . $data_file[$a]['AX'] . '<br>';
                         //AGREGAR CUENTA
                         $this->portafolio_model->insert_cuenta($data_file, $a, $persona_id);
-                        $output.='<span class="label label-success">OK</span> Se Agrego Cuenta: ' . $data_file[$a]['A'] . ' - Doc.: ' . $data_file[$a]['AX'] . '<br>';
+                        $output.='<span class="label label-success">OK</span> Se Agrego y/o Modifico Cuenta: ' . $data_file[$a]['A'] . ' - Doc.: ' . $data_file[$a]['AX'] . '<br>';
                     } else {
                         $output.='<span class="label label-danger">ERROR</span> &#161; Cuenta en Fecha_Caida ya se encontraba : Cuenta: ' . $data_file[$a]['A'] . ' - Doc.: ' . $data_file[$a]['AX'] . ' &#33;<br>';
                     }

@@ -41,49 +41,49 @@
                         <td><?php echo $user[0]->cosecha_real; ?></td>
 
                         <td><strong>Saldo Contable</strong></td>
-                        <td><?php echo $user[0]->SaldoContable; ?></td>                        
+                        <td>$<?php echo number_format($user[0]->SaldoContable,0,',','.'); ?></td>                        
                     </tr>
                     <tr>
                         <td><strong>Saldo Real</strong></td>
-                        <td><?php echo $user[0]->SaldoReal; ?></td>
+                        <td>$<?php echo number_format($user[0]->SaldoReal,0,',','.'); ?></td>
 
                         <td><strong>ESTRATEGIA_0</strong></td>
-                        <td><?php echo $user[0]->ESTRATEGIA_0; ?></td>                        
+                        <td>$<?php echo number_format($user[0]->ESTRATEGIA_0,0,',','.'); ?></td>                        
                     </tr>
                     <tr>
                         <td><strong>ESTRATEGIA_1</strong></td>
-                        <td><?php echo $user[0]->ESTRATEGIA_1; ?></td>
+                        <td>$<?php echo number_format($user[0]->ESTRATEGIA_1,0,',','.'); ?></td>
 
                         <td><strong>ESTRATEGIA_2</strong></td>
-                        <td><?php echo $user[0]->ESTRATEGIA_2; ?></td>                        
+                        <td>$<?php echo number_format($user[0]->ESTRATEGIA_2,0,',','.'); ?></td>                        
                     </tr>
                     <tr>
                         <td><strong>ESTRATEGIA_3</strong></td>
-                        <td><?php echo $user[0]->ESTRATEGIA_3; ?></td>
+                        <td>$<?php echo number_format($user[0]->ESTRATEGIA_3,0,',','.'); ?></td>
 
                         <td><strong>ESTRATEGIA_4</strong></td>
-                        <td><?php echo $user[0]->ESTRATEGIA_4; ?></td>                        
+                        <td>$<?php echo number_format($user[0]->ESTRATEGIA_4,0,',','.'); ?></td>                        
                     </tr>
                     <tr>
                         <td><strong>Capital</strong></td>
-                        <td><?php echo $user[0]->Capital; ?></td>
+                        <td>$<?php echo number_format($user[0]->Capital,0,',','.'); ?></td>
 
                         <td><strong>Cuota_manejo</strong></td>
-                        <td><?php echo $user[0]->Cuota_manejo; ?></td>                        
+                        <td>$<?php echo number_format($user[0]->Cuota_manejo,0,',','.'); ?></td>                        
                     </tr>
                     <tr>
                         <td><strong>IntCtes</strong></td>
-                        <td><?php echo $user[0]->IntCtes; ?></td>
+                        <td>$<?php echo number_format($user[0]->IntCtes,0,',','.'); ?></td>
 
                         <td><strong>IntMoraFact</strong></td>
-                        <td><?php echo $user[0]->IntMoraFact; ?></td>                        
+                        <td>$<?php echo number_format($user[0]->IntMoraFact,0,',','.'); ?></td>                        
                     </tr>
                     <tr>
                         <td><strong>IntMoraNoFact</strong></td>
-                        <td><?php echo $user[0]->IntMoraNoFact; ?></td>
+                        <td>$<?php echo number_format($user[0]->IntMoraNoFact,0,',','.'); ?></td>
 
                         <td><strong>GAST_COBR</strong></td>
-                        <td><?php echo $user[0]->GAST_COBR; ?></td>                        
+                        <td>$<?php echo number_format($user[0]->GAST_COBR,0,',','.'); ?></td>                        
                     </tr>
                     <tr>
                         <td><strong>Dias_Mora</strong></td>

@@ -93,7 +93,27 @@
                         <?php endif; ?>
                     </ul>
                 </li>
-            <?php endif; ?>                  
+            <?php endif; ?>      
+                
+            <?php if (know_permission_role('REP', 'permission_view')): ?>
+                <li class="<?php echo strstr($content, 'report') ? 'active open' : ''; ?>">
+                    <a href="javascript:;">
+                        <i class="icon-book-open"></i>
+                        <span class="title">Reportes</span>
+                        <?php echo strstr($content, 'report') ? '<span class="selected"></span>' : ''; ?>
+                        <span class="arrow <?php echo strstr($content, 'report') ? 'open' : ''; ?>"></span>
+                    </a>                   
+                    <ul class="sub-menu">
+                        <?php if (know_permission_role('REP', 'permission_add')): ?>
+                            <li>
+                                <a href="<?php echo base_url('index.php/report'); ?>">
+                                    Archivo Plano
+                                </a>
+                            </li>
+                        <?php endif; ?>
+                    </ul>
+                </li>
+            <?php endif; ?>                 
 
             <?php if (know_permission_role('USU', 'permission_view')): ?>
                 <li class="<?php echo strstr($content, 'user') ? 'active open' : ''; ?>">
