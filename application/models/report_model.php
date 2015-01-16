@@ -4,23 +4,23 @@ if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
 class Report_model extends CI_Model {
-    
-    
 
-    public function get_report1($num_documento) {
+    public function get_report1($from, $to) {
         $this->db->set_dbprefix('');
-        $this->db->select('*');
+        $this->db->select('accion.codigo AS accioncodigo');
+        $this->db->select('resultado.codigo AS resultadocodigo');
+        $this->db->select('gestion.*,accion.*,causal.*,resultado.*,cuenta.*,persona.*');
         $this->db->from('gestion,accion,causal,resultado,cuenta,persona');
-        
+
         $this->db->where("gestion.accion_id", "accion.accion_id", false);
         $this->db->where("gestion.causal_id", "causal.causal_id", false);
         $this->db->where("gestion.resultado_id", "resultado.resultado_id", false);
-        
+
         $this->db->where("gestion.cuenta_id", "cuenta.cuenta_id", false);
-        
-        $this->db->where("cuenta.persona_id", "persona.persona_id", false);
-        
-        //$this->db->where('gestion', $num_documento);
+
+        $this->db->where("gestion.fecha_ingreso between '$from' and '$to'");
+
+        $this->db->group_by("gestion.gestion_id"); 
         $query = $this->db->get();
         return $query->result();
     }
@@ -105,12 +105,12 @@ class Report_model extends CI_Model {
         $this->db->where('cuenta', addslashes($data_file[$a]['A']));
         $query = $this->db->get();
         $result = $query->result();
-        if (count($result) > 0){
+        if (count($result) > 0) {
             unset($data_cuenta['cuenta']);
             unset($data_cuenta['persona_id']);
             $this->db->where('cuenta', addslashes($data_file[$a]['A']));
             $this->db->update('cuenta', $data_cuenta);
-        }else
+        } else
             $this->db->insert('cuenta', $data_cuenta);
         return $this->db->insert_id();
     }

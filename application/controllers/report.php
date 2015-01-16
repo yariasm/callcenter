@@ -47,11 +47,26 @@ class Report extends CI_Controller {
             $data['content'] = 'report/index';
             $this->load->view('template/template', $data);
         } else {
-            $gestion = $this->report_model->get_report1($this->input->post('from'), $this->input->post('to'));
-            if (count($gestion) > 0) {
-                echo print_y($gestion);
+            $gestiones = $this->report_model->get_report1($this->input->post('from'), $this->input->post('to'));
+            if (count($gestiones) > 0) {
+                $name = "c_200_06AM0006_" . date("Y") . date("m") . date("d");
+                header("Content-type:text/plain");
+                header("Content-type: text/plain; charset=UTF-8");
+                header('Content-Disposition: attachment; filename="' . $name . '.txt"');
+                //echo print_y($gestiones);
+                foreach ($gestiones as $gestion) {
+                    echo "200";
+                    echo "6";
+                    //echo str_pad($gestion->cuenta, 10, "-=", STR_PAD_LEFT);
+                    echo str_pad($gestion->cuenta, 25);
+                    echo str_pad(date("m") . date("d") . date("Y") . ' ' . date("H:m:i"), 18);
+                    echo substr($gestion->accioncodigo, 0, 2);
+                    echo substr($gestion->resultadocodigo, 0, 2);
+                    echo substr($gestion->observacion, 0, 56);
+                    echo "\r\n";
+                }
             } else {
-                $this->session->set_flashdata(array('message' => 'No se encontraron Registros.', 'message_type' => 'error'));
+                $this->session->set_flashdata(array('message' => 'No se encontraron Registros.', 'message_type' => 'danger'));
                 redirect('index.php/report', 'refresh');
             }
         }
