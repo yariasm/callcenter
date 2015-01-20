@@ -75,8 +75,8 @@ class Portafolio extends CI_Controller {
                 //echo '<pre>' . $total_registros . print_r($data_file, true) . '</pre>';
                 //VALIDAR SI EL ARCHIVO CONTIENE LAS COLUMNAS NECESARIAS (87 - CI), ADEMAS SE VALIDA LA PRIMERA Y ULTIMA FILA.
                 $var_filas = 87;
-                if ( $data_file[1]['A'] != 'CUENTA' || $data_file[1]['CI'] != 'tienda') {
-                    $this->session->set_flashdata(array('message' => "Error al leer el archivo, no contiene las $var_filas filas necesarias", 'message_type' => 'danger'));
+                if ( $data_file[1]['A'] != 'CUENTA') {
+                    $this->session->set_flashdata(array('message' => "Error al leer el archivo", 'message_type' => 'danger'));
                     redirect('index.php/portafolio/add', 'refresh');
                 }
 
@@ -84,25 +84,25 @@ class Portafolio extends CI_Controller {
                 for ($a = 2; $a <= count($data_file); $a++) {
                     $output.='<br>***Procesando Registro No.: ' . ($a - 1) . '***<br>';
                     //VALIDAR SI EL USUARIO ESTA CREADO EN EL SISTEMA (TABLA PERSONA)
-                    $get_persona_id = $this->portafolio_model->get_persona_id($data_file[$a]['AX']);
+                    $get_persona_id = $this->portafolio_model->get_persona_id($data_file[$a][array_search('Num Documento', $data_file[1])]);
                     if (count($get_persona_id) == 0) {
                         //CREACION DEL USUARIO (TABLA PERSONA)
                         $persona_id = $this->portafolio_model->insert_persona($data_file, $a);
-                        $output.='<span class="label label-success">OK</span> Nueva Persona Creada: Doc.: ' . $data_file[$a]['AX'] . '<br>';
+                        $output.='<span class="label label-success">OK</span> Nueva Persona Creada: Doc.: ' . $data_file[$a][array_search('Num Documento', $data_file[1])] . '<br>';
                     } else {
                         $persona_id = $get_persona_id[0]->persona_id;
                     }
                     //VALIDAR SI PARA EL USUARIO YA SE SUBIERON CAIDAS DE LA FECHA (fecha_caida)
-                    $get_cuenta_id_fecha_caida = $this->portafolio_model->get_cuenta_id_fecha_caida($data_file[$a]['A'], $this->input->post('fecha_caida'));
+                    $get_cuenta_id_fecha_caida = $this->portafolio_model->get_cuenta_id_fecha_caida($data_file[$a][array_search('CUENTA', $data_file[1])], $this->input->post('fecha_caida'));
                     if (count($get_cuenta_id_fecha_caida) == 0) {
                         //AGREGAR HISTORICO PERSONA
                         $this->portafolio_model->insert_historico($data_file, $a, $persona_id);
-                        $output.='<span class="label label-success">OK</span> Se Agrego Historico Persona: Doc.: ' . $data_file[$a]['AX'] . '<br>';
+                        $output.='<span class="label label-success">OK</span> Se Agrego Historico Persona: Doc.: ' . $data_file[$a][array_search('Num Documento', $data_file[1])] . '<br>';
                         //AGREGAR CUENTA
                         $this->portafolio_model->insert_cuenta($data_file, $a, $persona_id);
-                        $output.='<span class="label label-success">OK</span> Se Agrego y/o Modifico Cuenta: ' . $data_file[$a]['A'] . ' - Doc.: ' . $data_file[$a]['AX'] . '<br>';
+                        $output.='<span class="label label-success">OK</span> Se Agrego y/o Modifico Cuenta: ' . $data_file[$a][array_search('CUENTA', $data_file[1])] . ' - Doc.: ' . $data_file[$a][array_search('Num Documento', $data_file[1])] . '<br>';
                     } else {
-                        $output.='<span class="label label-danger">ERROR</span> &#161; Cuenta en Fecha_Caida ya se encontraba : Cuenta: ' . $data_file[$a]['A'] . ' - Doc.: ' . $data_file[$a]['AX'] . ' &#33;<br>';
+                        $output.='<span class="label label-danger">ERROR</span> &#161; Cuenta en Fecha_Caida ya se encontraba : Cuenta: ' . $data_file[$a][array_search('CUENTA', $data_file[1])] . ' - Doc.: ' . $data_file[$a][array_search('Num Documento', $data_file[1])] . ' &#33;<br>';
                     }
                 }
                 $output.='.<br>.<br>.<br>.<br>.<br>&#161; Fin del proceso &#33;';
