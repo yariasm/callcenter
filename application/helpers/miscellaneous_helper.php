@@ -97,3 +97,42 @@ function get_type_search(){
         '2' => 'Cuenta'
     );
 }
+
+function send_mail($mails_destinations, $subject, $message, $path_attachment = array()) {
+    
+    //$mails_destinations = ARRAY('MAIL'=>'USERNAME');
+    //$subject = ASUNTO
+    //$message = TEXTO DEL CORREO
+    //$path_attachment = adjuntos
+    
+    $CI = & get_instance();
+    $CI->load->library('My_PHPMailer');
+
+    $response = '';
+    foreach ($mails_destinations as $mail_destination => $name_destination) {
+        $mail = new PHPMailer();
+        $mail->IsSMTP();
+        $mail->SMTPAuth = true;
+        $mail->Mailer = "smtp";
+        $mail->SMTPSecure = "tls";
+        $mail->Debugoutput = 'html';
+        $mail->Host = 'smtp.gmail.com';                                                                
+        $mail->Port = 587;                                                                        
+        $mail->Username = 'correoscallcenter.p@gmail.com';                                                         
+        $mail->Password = 'proyectocallcenter';                                                       
+        $mail->SetFrom('correoscallcenter_p@gmail.com', 'proyectocallcenter');                                           
+        $mail->AddReplyTo($mail_destination, $name_destination);
+        $mail->Subject = $subject;                                                                      
+        $mail->Body = $message;
+        $mail->AltBody = $message;
+
+        $destino = $mail_destination;
+        $mail->AddAddress($destino, $name_destination);
+        if (!$mail->Send()) {
+            $response.= 0;
+        } else {
+            $response.= 1;
+        }
+    }
+    return $response;
+}

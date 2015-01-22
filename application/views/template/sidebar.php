@@ -115,6 +115,26 @@
                 </li>
             <?php endif; ?>                 
 
+            <?php if (know_permission_role('COR', 'permission_view')): ?>
+                <li class="<?php echo strstr($content, 'mail') ? 'active open' : ''; ?>">
+                    <a href="javascript:;">
+                        <i class="icon-envelope-open"></i>
+                        <span class="title">Correos</span>
+                        <?php echo strstr($content, 'mail') ? '<span class="selected"></span>' : ''; ?>
+                        <span class="arrow <?php echo strstr($content, 'mail') ? 'open' : ''; ?>"></span>
+                    </a>                   
+                    <ul class="sub-menu">
+                        <?php if (know_permission_role('COR', 'permission_add')): ?>
+                            <li>
+                                <a href="<?php echo base_url('index.php/mail/add'); ?>">
+                                    Enviar Correo
+                                </a>
+                            </li>
+                        <?php endif; ?>
+                    </ul>
+                </li>
+            <?php endif; ?>                  
+                
             <?php if (know_permission_role('USU', 'permission_view')): ?>
                 <li class="<?php echo strstr($content, 'user') ? 'active open' : ''; ?>">
                     <a href="javascript:;">
