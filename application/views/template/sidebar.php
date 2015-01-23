@@ -131,6 +131,13 @@
                                 </a>
                             </li>
                         <?php endif; ?>
+                        <?php if (know_permission_role('COR', 'permission_edit')): ?>
+                            <li>
+                                <a href="<?php echo base_url('index.php/mail/edit'); ?>">
+                                    Editar Plantilla
+                                </a>
+                            </li>
+                        <?php endif; ?>                            
                     </ul>
                 </li>
             <?php endif; ?>                  

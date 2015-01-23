@@ -88,6 +88,8 @@
 <script type="text/javascript" src="<?php echo base_url('/assets/admin/pages/scripts/table-ajax.js'); ?>"></script>
 <script type="text/javascript" src="<?php echo base_url('/assets/admin/pages/scripts/table-advanced.js'); ?>"></script>
 
+<script src="<?php echo base_url('/assets/global/plugins/bootstrap-summernote/summernote.min.js'); ?>" type="text/javascript"></script>
+
 
 
 <script type="text/javascript" src="<?php echo base_url('/js/script.js'); ?>"></script>
@@ -105,6 +107,7 @@
         //QuickSidebar.init() // init quick sidebar
         Index.init();
         UIBlockUI.init();
+        ComponentsEditors.init();
         //Index.initDashboardDaterange();
         //Index.initJQVMAP(); // init index page's custom scripts
         //Index.initCalendar(); // init index page's custom scripts

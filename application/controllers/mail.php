@@ -66,5 +66,20 @@ class Mail extends CI_Controller {
         $this->session->set_flashdata(array('message' => 'Detalles del envio de correos: <br>'.$log, 'message_type' => 'info'));
         redirect('index.php/mail/add', 'refresh');
     }
+    
+    public function edit($id = 1) {
+        //VALIDAR PERMISO DEL ROL
+        validation_permission_role($this->module_sigla, 'permission_edit');
+
+        $data['registro'] = $this->mail_model->get_plantilla_id($id);
+        if (count($data['registro']) > 0) {
+            $data['title'] = 'Modificar Plantilla';
+            $data['content'] = 'mail/edit';
+            $this->load->view('template/template', $data);
+        } else {
+            $this->session->set_flashdata(array('message' => 'Error al Consultar el Registro', 'message_type' => 'warning'));
+            redirect('index.php/user', 'refresh');
+        }
+    }    
 
 }
