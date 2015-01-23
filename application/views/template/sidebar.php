@@ -110,6 +110,11 @@
                                     Archivo Plano
                                 </a>
                             </li>
+                            <li>
+                                <a href="<?php echo base_url('index.php/report/excel'); ?>">
+                                    Archivo Excel
+                                </a>
+                            </li>
                         <?php endif; ?>
                     </ul>
                 </li>
