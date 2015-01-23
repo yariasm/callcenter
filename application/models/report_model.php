@@ -27,9 +27,9 @@ class Report_model extends CI_Model {
     
     public function get_report2($from, $to) {
         $this->db->set_dbprefix('');
-        $this->db->select('accion.codigo AS accioncodigo');
-        $this->db->select('resultado.codigo AS resultadocodigo');
-        $this->db->select('gestion.*,accion.*,causal.*,resultado.*,cuenta.*,persona.*');
+        $this->db->select('persona.num_documento,cuenta.cuenta,accion.codigo as accion_codigo,accion.nombre as accion_nombre',false);
+        $this->db->select('resultado.codigo as resultado_codigo,resultado.nombre as resultado_nombre',false);
+        $this->db->select('causal.codigo as causal_codigo,causal.nombre as causal_nombre,gestion.*',false);
         $this->db->from('gestion,accion,causal,resultado,cuenta,persona');
 
         $this->db->where("gestion.accion_id", "accion.accion_id", false);

@@ -100,23 +100,41 @@ class Report extends CI_Controller {
             $data['content'] = 'report/excel';
             $this->load->view('template/template', $data);
         } else {
-            $gestiones = $this->report_model->get_report1($this->input->post('from'), $this->input->post('to'));
+            
+            $gestiones = $this->report_model->get_report2($this->input->post('from'), $this->input->post('to'));
             if (count($gestiones) > 0) {
-                $name = "c_200_06AM0006_" . date("Y") . date("m") . date("d");
+                $name = "ReporteExcel_" . date("Y") . date("m") . date("d");
                 header("Content-Type:   application/vnd.ms-excel; charset=utf-8");
                 header("Content-type:   application/x-msexcel; charset=utf-8");
-                header("Content-Disposition: attachment; filename=abc.xls");
+                header("Content-Disposition: attachment; filename=$name.xls");
                 header("Expires: 0");
                 header("Cache-Control: must-revalidate, post-check=0, pre-check=0");
                 header("Cache-Control: private", false);
                 $report2 = '<table>';
+                    $report2.= '<tr>';
+                    $report2.= "<td>cedula</td>";
+                    $report2.= "<td>cuenta</td>";
+                    $report2.= "<td>accion codigo</td>";
+                    $report2.= "<td>accion nombre</td>";
+                    $report2.= "<td>resultado codigo</td>";
+                    $report2.= "<td>resultado nombre</td>";
+                    $report2.= "<td>causal codigo</td>";
+                    $report2.= "<td>causal nombre</td>";                  
+                    $report2.= "<td>observacion</td>"; 
+                    $report2.= "<td>fecha</td>";
+                    $report2.= '</tr>';                
                 foreach ($gestiones as $gestion) {
                     $report2.= '<tr>';
-                    $report2.= "<td>1</td>";
-                    $report2.= "<td>2</td>";
-                    $report2.= "<td>3</td>";
-                    $report2.= "<td>4</td>";
-                    $report2.= "<td>5</td>";
+                    $report2.= "<td>".$gestion->num_documento."</td>";
+                    $report2.= "<td>".$gestion->cuenta."</td>";
+                    $report2.= "<td>".$gestion->accion_codigo."</td>";
+                    $report2.= "<td>".$gestion->accion_nombre."</td>";
+                    $report2.= "<td>".$gestion->resultado_codigo."</td>";
+                    $report2.= "<td>".$gestion->resultado_nombre."</td>";
+                    $report2.= "<td>".$gestion->causal_codigo."</td>";
+                    $report2.= "<td>".$gestion->causal_nombre."</td>";    
+                    $report2.= "<td>".$gestion->observacion."</td>";
+                    $report2.= "<td>".$gestion->fecha_ingreso."</td>";                      
                     $report2.= '</tr>';
                 }
                 $report2.= '</table>';
