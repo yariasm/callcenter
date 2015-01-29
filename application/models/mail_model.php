@@ -41,9 +41,16 @@ class Mail_model extends CI_Model {
        
 
     public function insert($data) {
+        $this->db->set_dbprefix('');    
         $this->db->insert('log_correos', $data);
         return $this->db->insert_id();
     }
+    
+    public function update($data,$plantilla_id) {
+        $this->db->set_dbprefix('');
+        $this->db->where('plantilla_id', $plantilla_id);
+        return $this->db->update('plantillas_correo', $data);
+    }    
 
 
 }

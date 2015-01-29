@@ -63,6 +63,8 @@ License: You must have a valid license purchased only from themeforest(the above
         <link rel="stylesheet" type="text/css" href="<?php echo base_url('/assets/global/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.css'); ?>"/>        
 
 
+        <link rel="stylesheet" type="text/css" href="<?php echo base_url('/assets/global/plugins/bootstrap-summernote/summernote.css'); ?>">
+        
         <!-- BEGIN THEME STYLES  -->
         <link href="<?php echo base_url('/css/style.css'); ?>" rel="stylesheet" type="text/css"/>
         <!-- END THEME STYLES  -->

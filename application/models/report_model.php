@@ -43,6 +43,21 @@ class Report_model extends CI_Model {
         $this->db->group_by("gestion.gestion_id"); 
         $query = $this->db->get();
         return $query->result();
+    } 
+    
+    public function get_report3($from, $to) {
+        $this->db->set_dbprefix('');
+        $this->db->select('*',false);
+        $this->db->from('visita,cuenta,persona');
+
+        $this->db->where("visita.cuenta_id", "cuenta.cuenta_id", false);
+        $this->db->where("cuenta.persona_id ", "persona.persona_id", false);
+
+        $this->db->where("visita.fecha_ingreso between '$from' and '$to'");
+
+        $this->db->group_by("visita.visita_id"); 
+        $query = $this->db->get();
+        return $query->result();
     }    
 
     public function get_cuenta_id_fecha_caida($cuenta, $fecha_caida) {

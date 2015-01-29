@@ -76,6 +76,7 @@
 <script src="<?php echo base_url('/assets/global/plugins/select2/select2.min.js'); ?>"></script>
 <script src="<?php echo base_url('/assets/global/plugins/jquery-multi-select/js/jquery.multi-select.js'); ?>"></script>
 
+<script src="<?php echo base_url('/assets/global/plugins/bootstrap-summernote/summernote.min.js'); ?>" type="text/javascript"></script>
 
 <script type="text/javascript" src="<?php echo base_url('/assets/global/plugins/datatables/media/js/jquery.dataTables.min.js'); ?>"></script>
 <script type="text/javascript" src="<?php echo base_url('/assets/global/plugins/datatables/extensions/TableTools/js/dataTables.tableTools.min.js'); ?>"></script>
@@ -88,9 +89,8 @@
 <script type="text/javascript" src="<?php echo base_url('/assets/admin/pages/scripts/table-ajax.js'); ?>"></script>
 <script type="text/javascript" src="<?php echo base_url('/assets/admin/pages/scripts/table-advanced.js'); ?>"></script>
 
-<script src="<?php echo base_url('/assets/global/plugins/bootstrap-summernote/summernote.min.js'); ?>" type="text/javascript"></script>
 
-
+<script src="<?php echo base_url('/assets/admin/pages/scripts/components-editors.js'); ?>"></script>
 
 <script type="text/javascript" src="<?php echo base_url('/js/script.js'); ?>"></script>
 
@@ -106,7 +106,7 @@
         ComponentsPickers.init();
         //QuickSidebar.init() // init quick sidebar
         Index.init();
-        UIBlockUI.init();
+        
         ComponentsEditors.init();
         //Index.initDashboardDaterange();
         //Index.initJQVMAP(); // init index page's custom scripts
@@ -118,6 +118,7 @@
         //Index.initMiniCharts();
         //Index.initIntro();
         //Tasks.initDashboardWidget();
+        UIBlockUI.init();
         ComponentsDropdowns.init();
         
 

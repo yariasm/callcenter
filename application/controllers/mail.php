@@ -53,7 +53,7 @@ class Mail extends CI_Controller {
                 $data = array(
                     'id_usuario' => $user->persona_id,
                     'id_plantilla' => $this->input->post('plantilla_id'),
-                    'banco_id' => $this->input->post('banco_id'),  
+                    'banco_id' => $this->input->post('banco_id'),
                 );
                 $insert = $this->mail_model->insert($data);
                 if ($insert)
@@ -63,10 +63,10 @@ class Mail extends CI_Controller {
             }
         }
 
-        $this->session->set_flashdata(array('message' => 'Detalles del envio de correos: <br>'.$log, 'message_type' => 'info'));
+        $this->session->set_flashdata(array('message' => 'Detalles del envio de correos: <br>' . $log, 'message_type' => 'info'));
         redirect('index.php/mail/add', 'refresh');
     }
-    
+
     public function edit($id = 1) {
         //VALIDAR PERMISO DEL ROL
         validation_permission_role($this->module_sigla, 'permission_edit');
@@ -78,8 +78,28 @@ class Mail extends CI_Controller {
             $this->load->view('template/template', $data);
         } else {
             $this->session->set_flashdata(array('message' => 'Error al Consultar el Registro', 'message_type' => 'warning'));
-            redirect('index.php/user', 'refresh');
+            redirect('index.php/mail', 'refresh');
         }
-    }    
+    }
+
+    public function update($id) {
+        //VALIDAR PERMISO DEL ROL
+        validation_permission_role($this->module_sigla, 'permission_edit');
+
+        $id = deencrypt_id($id);
+        $data = array(
+            'nombre' => $this->input->post('nombre'),
+            'texto' => $this->input->post('texto')
+        );
+        $update = $this->mail_model->update($data, $id);
+
+        if ($update) {
+            $this->session->set_flashdata(array('message' => 'Plantilla editada con exito', 'message_type' => 'info'));
+            redirect('index.php/mail/edit', 'refresh');
+        } else {
+            $this->session->set_flashdata(array('message' => 'Error al editar la Plantilla', 'message_type' => 'warning'));
+            redirect('index.php/mail/edit' , 'refresh');
+        }
+    }
 
 }

@@ -72,15 +72,24 @@
                                             Plantilla
                                         </label>
                                         <div class="col-md-9">
-                                            <div name="summernote" id="summernote_1">
-											</div>
+                                            <?php echo form_textarea('texto', $registro[0]->texto, 'id="texto" class="textarea"'); ?>
                                         </div>
                                     </div>
                                 </div>
-                               
+
+                                <div class="col-md-12">
+                                    <br>
+                                    <div class="alert alert-info">
+                                        <strong>Importante: </strong> 
+                                        Por favor utilice las variables [USUARIO] y [CONTENIDO] dentro de la plantilla, 
+                                        estas van a ser reemplazadas dinamicamente al enviar los correos electronicos.
+                                    </div>
+                                </div>
+
+
 
                                 <div class="form-group">
-                                    
+
                                 </div>                               
 
                             </div>
@@ -104,71 +113,23 @@
     </div>
     <!-- END CONTENT -->
 
-
     <script>
-        var FormValidation = function () {
-            // basic validation
-            var handleValidation1 = function () {
-                // for more info visit the official plugin documentation: 
-                // http://docs.jquery.com/Plugins/Validation
-
-                var form1 = $('#update_user');
-                var error1 = $('.alert-danger', form1);
-                var success1 = $('.alert-success', form1);
-
-                form1.validate({
-                    errorElement: 'span', //default input error message container
-                    errorClass: 'help-block help-block-error', // default input error message class
-                    focusInvalid: false, // do not focus the last invalid input
-                    ignore: "", // validate all fields including form hidden input
-                    rules: {
-                        USUARIO_NOMBRES: {
-                            required: true
-                        },
-                        USUARIO_APELLIDOS: {
-                            required: true
-                        },
-                        USUARIO_NUMERODOCUMENTO: {
-                            required: true
-                        },
-                        USUARIO_CORREO: {
-                            required: true
-                        }
-                    },
-                    invalidHandler: function (event, validator) { //display error alert on form submit              
-                        success1.hide();
-                        error1.show();
-                        Metronic.scrollTo(error1, -200);
-                    },
-                    highlight: function (element) { // hightlight error inputs
-                        $(element)
-                                .closest('.form-group').addClass('has-error'); // set error class to the control group
-                    },
-                    unhighlight: function (element) { // revert the change done by hightlight
-                        $(element)
-                                .closest('.form-group').removeClass('has-error'); // set error class to the control group
-                    },
-                    /*success: function(label) {
-                     label
-                     .closest('.form-group').removeClass('has-error'); // set success class to the control group
-                     },*/
-                    submitHandler: function (form) {
-                        success1.show();
-                        error1.hide();
-                        $("#" + form1).submit();
-                    }
-                });
-            }
-            return {
-                //main function to initiate the module
-                init: function () {
-                    handleValidation1();
-                }
-            };
-
-        }();
 
         $(document).ready(function () {
-            //$('#summernote_1').summernote();
+            $('.textarea').summernote({
+                height: 200,
+                toolbar: [
+                    //['style', ['style']], // no style button
+                    ['style', ['bold', 'italic', 'underline', 'clear']],
+                    ['fontsize', ['fontsize']],
+                    ['color', ['color']],
+                    ['para', ['ul', 'ol', 'paragraph']],
+                    ['height', ['height']],
+                    ['insert', ['picture', 'link', 'video', 'codeview']], // no insert buttons
+                    ['fullscreen', ['fullscreen']],
+                    ['table', ['table']], // no table button
+//                ['help', ['help']] //no help button
+                ]
+            });
         });
     </script>
